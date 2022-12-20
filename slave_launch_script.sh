@@ -3,19 +3,21 @@
 # DATA NODE SETUP
 # source: https://www.digitalocean.com/community/tutorials/how-to-create-a-multi-node-mysql-cluster-on-ubuntu-18-04
 
+cd ~
+
 # installing all the dependencies
 apt-get update -y
 apt-get install sysbench -y
 apt-get install libclass-methodmaker-perl -y
 
-cd ~
 wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-data-node_7.6.6-1ubuntu18.04_amd64.deb
 dpkg -i mysql-cluster-community-management-server_7.6.6-1ubuntu18.04_amd64.deb
 tar -xf mysql-cluster-gpl-7.2.1-linux2.6-x86_64.tar.gz -C /opt/mysqlcluster/home/
 
 touch /etc/my.cnf
 echo "[mysql_cluster]" >> /etc/my.cnf
-echo "ndb-connectstring=198.51.100.2" >> /etc/my.cnf  # location of cluster manager the  IP has been hardcoded.
+echo "ndb-connectstring=ip-172-31-81-1.ec2.internal" >> /etc/my.cnf  # location of cluster manager.
+source /etc/my.cnf
 
 mkdir -p /usr/local/mysql/data
 
@@ -33,6 +35,7 @@ echo "KillMode=process" >> /etc/systemd/system/ndbd.service
 echo "Restart=on-failure" >> /etc/systemd/system/ndbd.service
 echo "[Install]" >> /etc/systemd/system/ndbd.service
 echo "WantedBy=multi-user.target" >> /etc/systemd/system/ndbd.service
+source /etc/systemd/system/ndbd.service
 
 systemctl daemon-reload
 systemctl enable ndbd
