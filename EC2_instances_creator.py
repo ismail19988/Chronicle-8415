@@ -19,7 +19,7 @@ class EC2Creator:
         self.instance_private_dns = []
 
 
-    def create_instance(self, availability_zone, instance_type, launch_script):
+    def create_instance(self, availability_zone, instance_type, ip_address, launch_script):
         """Run a request to create an instance from parameters and saves their id.
         
         Parameters
@@ -33,7 +33,6 @@ class EC2Creator:
         -------
         instance_id : associated id of created ec2 instance
         """
-
         response = self.client.run_instances(
             BlockDeviceMappings=[
                 {
@@ -50,6 +49,11 @@ class EC2Creator:
                     },
                 },
             ],
+
+            SubnetId=constant.SUBNET_ID,
+
+            # ip_address
+            PrivateIpAddress=ip_address,
 
             # UBUNTU instance
             ImageId=constant.UBUNTU_IMAGE,
