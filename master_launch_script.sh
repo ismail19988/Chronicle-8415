@@ -6,6 +6,7 @@ apt-get install libmecab2 -y
 apt-get install sysbench -y
 apt-get install libncurses5 -y
 apt-get install libtinfo5 -y
+apt-get install unzip -y
 
 
 # MASTER NODE SETUP
@@ -82,4 +83,7 @@ systemctl status ndb_mgmd >> confirms.ini
 ufw allow from 172.31.81.2
 ufw allow from 172.31.81.3
 ufw allow from 172.31.81.4
+
+
+
 
