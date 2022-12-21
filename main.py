@@ -3,7 +3,18 @@ import constant
 
 ec2 = EC2Creator()
 
-print('Creating instance...')
+print('Creating standalone...')
+
+standalone_instance_id, standalone_instance_private_DNS = ec2.create_instance(
+    constant.US_EAST_1C,
+    constant.M4_LARGE,
+    "172.31.81.7",
+    launch_script=open(constant.stand_alone_launch_script).read()
+)
+print(f'Standalone Instance: {standalone_instance_id} created!\nPrivate DNS: {standalone_instance_private_DNS}.')
+
+print('')
+print('Creating cluster...')
 
 # master
 master_instance_id, master_instance_private_DNS = ec2.create_instance(
