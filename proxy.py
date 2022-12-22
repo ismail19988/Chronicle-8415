@@ -77,5 +77,9 @@ if __name__ == "__main__":
         print('the query has succeeded!')
         print('answer:')
         print(answer)
+    else:
+        print("there was an error with your query.")
+        print('error:')
+        print(answer)
 
     exit(0)
