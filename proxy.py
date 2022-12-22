@@ -11,16 +11,37 @@ def send_request(route, body):
 
 
 def direct_hit(query):
+    """
+    Queries the proxy server with a direct hit
+    Arguments:
+        query: a SQL query
+    Returns:
+        The status code, and the answer of the server
+    """
     ans = send_request(route=PROXY_PUBLIC_IP + "/direct_hit", body={'query': query})
     return ans.status_code, ans.text
 
 
 def random_hit(query):
+    """
+    Queries the proxy server with a random hit
+    Arguments:
+        query: a SQL query
+    Returns:
+        The status code, and the answer of the server
+    """
     ans = send_request(route=PROXY_PUBLIC_IP + "/random_hit", body={'query': query})
     return ans.status_code, ans.text
 
 
 def custom_hit(query):
+    """
+    Queries the proxy server with a custom hit
+    Arguments:
+        query: a SQL query
+    Returns:
+        The status code, and the answer of the server
+    """
     ans = send_request(route=PROXY_PUBLIC_IP + "/custom", body={'query': query})
     return ans.status_code, ans.text
 

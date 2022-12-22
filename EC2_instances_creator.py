@@ -29,6 +29,8 @@ class EC2Creator:
         instance_type :     string
                             The instance type
 
+        ip_address  :       string
+                            The private ip of the instance
         Returns
         -------
         instance_id : associated id of created ec2 instance
@@ -52,7 +54,7 @@ class EC2Creator:
 
             SubnetId=constant.SUBNET_ID,
 
-            # ip_address
+            # private ip address
             PrivateIpAddress=ip_address,
 
             # key to connect remotely

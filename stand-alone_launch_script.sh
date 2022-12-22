@@ -10,14 +10,17 @@ apt-get install unzip -y;
 apt-get install sysbench -y;
 
 # source : https://www.sqliz.com/sakila/installation/;
+# downloading Sakila
 wget http://downloads.mysql.com/docs/sakila-db.zip;
 
 # source : https://dev.mysql.com/doc/sakila/en/sakila-installation.html;
+# installing Sakila
 unzip sakila-db.zip -d /tmp;
 mysql -e "SOURCE /tmp/sakila-db/sakila-schema.sql;";
 mysql -e "SOURCE /tmp/sakila-db/sakila-data.sql;";
 
 # source https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql;
+# creating a user with the rights to run the benchmarks
 mysql -e "CREATE USER 'user'@'localhost' IDENTIFIED BY '0';";
 mysql -e "GRANT ALL PRIVILEGES on sakila.* TO 'user'@'localhost';";
 

@@ -10,20 +10,26 @@ apt-get update -y;
 apt-get install sysbench -y;
 apt-get install libclass-methodmaker-perl -y;
 
+
+# creating a files to verify the output
 touch confirms.ini;
+
+# downloading & installing mysql cluster
 wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-data-node_7.6.6-1ubuntu18.04_amd64.deb;
 sudo dpkg -i mysql-cluster-community-data-node_7.6.6-1ubuntu18.04_amd64.deb;
 
+# configuring my.cnf
 touch /etc/my.cnf;
 echo "[mysql_cluster]" >> /etc/my.cnf;
 echo "ndb-connectstring=ip-172-31-81-1.ec2.internal" >> /etc/my.cnf;  # location of cluster manager.
 source /etc/my.cnf;
 
+# creating ndbd file
 mkdir -p /usr/local/mysql/data;
-
 mkdir -p /etc/systemd/system/;
 touch /etc/systemd/system/ndbd.service;
 
+#configuring ndbd.service file
 echo "[Unit]" >> /etc/systemd/system/ndbd.service;
 echo "Description=MySQL NDB Data Node Daemon" >> /etc/systemd/system/ndbd.service;
 echo "After=network.target auditd.service" >> /etc/systemd/system/ndbd.service;
@@ -37,6 +43,7 @@ echo "[Install]" >> /etc/systemd/system/ndbd.service;
 echo "WantedBy=multi-user.target" >> /etc/systemd/system/ndbd.service;
 source /etc/systemd/system/ndbd.service;
 
+# starting ndbd
 systemctl daemon-reload;
 systemctl enable ndbd;
 systemctl start ndbd;
