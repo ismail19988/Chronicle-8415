@@ -4,16 +4,16 @@ import constant
 ec2 = EC2Creator()
 
 print('Creating standalone...')
-
+# standalone
 standalone_instance_id, standalone_instance_private_DNS = ec2.create_instance(
     constant.US_EAST_1C,
     constant.M4_LARGE,
-    "172.31.81.7",
+    "172.31.81.6",
     launch_script=open(constant.stand_alone_launch_script).read()
 )
 print(f'Standalone Instance: {standalone_instance_id} created!\nPrivate DNS: {standalone_instance_private_DNS}.')
 
-print('')
+# print('')
 print('Creating cluster...')
 
 # master
@@ -52,7 +52,17 @@ node_3_instance_id, node_3_instance_private_DNS = ec2.create_instance(
 )
 print(f'Node 3 Instance: {node_3_instance_id} created!\nPrivate DNS: {node_3_instance_private_DNS}.')
 
+print('')
+print('Creating proxy instance...')
 
+# proxy
+proxy_instance_id, proxy_instance_private_DNS = ec2.create_instance(
+    constant.US_EAST_1C,
+    constant.M4_LARGE,
+    "172.31.81.5",
+    launch_script=open(constant.proxy_launch_script).read()
+)
+print(f'proxy Instance: {proxy_instance_id} created!\nPrivate DNS: {proxy_instance_private_DNS}.')
 # Terminate services
 # ec2.terminate_instance()
 

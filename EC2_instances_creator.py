@@ -55,6 +55,9 @@ class EC2Creator:
             # ip_address
             PrivateIpAddress=ip_address,
 
+            # key to connect remotely
+            KeyName=constant.SSH_KEY,
+
             # UBUNTU instance
             ImageId=constant.UBUNTU_IMAGE,
 
