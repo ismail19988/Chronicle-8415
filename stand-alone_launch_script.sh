@@ -27,4 +27,4 @@ mysql -e "GRANT ALL PRIVILEGES on sakila.* TO 'user'@'localhost';";
 # source https://severalnines.com/blog/how-benchmark-performance-mysql-mariadb-using-sysbench/
 # running the stand alone benchmark and saving the results
 sysbench --db-driver=mysql --mysql-db=sakila --mysql-user=user --mysql_password=0  --table-size=50000 --tables=10 /usr/share/sysbench/oltp_read_write.lua prepare;
-sysbench --db-driver=mysql --mysql-db=sakila --mysql-user=user --mysql_password=0  --table-size=50000  --tables=10 --threads=6 --max-time=30 /usr/share/sysbench/oltp_read_write.lua run > stand-alone_server;
+sysbench --db-driver=mysql --mysql-db=sakila --mysql-user=user --mysql_password=0  --table-size=50000  --tables=10 --threads=6 --max-time=30 /usr/share/sysbench/oltp_read_write.lua run > stand-alone_banchmark;

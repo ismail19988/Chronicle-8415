@@ -3,7 +3,7 @@ import sys
 import json
 
 
-PROXY_PUBLIC_IP = ''
+PROXY_PUBLIC_IP = 'your ip here'
 
 
 def send_request(route, body):

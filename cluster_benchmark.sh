@@ -54,4 +54,4 @@ mysql -e "GRANT ALL PRIVILEGES on sakila.* TO 'user'@'localhost';";
 
 # running the cluster benchmark and saving the results
 sudo sysbench --db-driver=mysql --mysql-db=sakila --mysql-user=user --mysql_password=0  --table-size=50000  /usr/share/sysbench/oltp_read_write.lua prepare;
-sudo sysbench --db-driver=mysql --mysql-db=sakila --mysql-user=user --mysql-password=0  --table-size=50000  --num-threads=6 --max-time=30 /usr/share/sysbench/oltp_read_write.lua run > cluster_results;
+sudo sysbench --db-driver=mysql --mysql-db=sakila --mysql-user=user --mysql-password=0  --table-size=50000  --num-threads=6 --max-time=30 /usr/share/sysbench/oltp_read_write.lua run > cluster_benchmark;
